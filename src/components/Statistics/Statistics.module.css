@@ -1,0 +1,19 @@
+.statistics {
+  text-align: left;
+  font-size: 20px;
+  font-weight: 500;
+}
+.list {
+}
+
+.list_item {
+  padding-bottom: 5px;
+}
+
+.total {
+  font-weight: 400;
+}
+
+.positive {
+  font-weight: 400;
+}

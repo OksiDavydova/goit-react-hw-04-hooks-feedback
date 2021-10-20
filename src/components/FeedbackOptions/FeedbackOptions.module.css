@@ -1,0 +1,21 @@
+.btn {
+  min-width: calc(100% / 4);
+  padding: 10px 20px;
+  margin-right: 20px;
+  text-transform: uppercase;
+  border: 2px solid gray;
+  border-radius: 15px 50px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.btn:last-child {
+  margin-right: 0;
+}
+
+.btn:hover {
+  background-color: rgb(230, 208, 191);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
