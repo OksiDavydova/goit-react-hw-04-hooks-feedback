@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Section } from "./components/Section/Section";
 import { Statistics } from "./components/Statistics/Statistics";
@@ -9,6 +9,10 @@ function App() {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
+  const [totalFeedback, setTotalFeedback] = useState(null);
+  const [positiveFeedbackPercentage, setPositiveFeedbackPercentage] = useState(
+    null
+  );
 
   const addFeedback = (option) => {
     switch (option) {
@@ -28,16 +32,26 @@ function App() {
     }
   };
 
-  const totalFeedback = () => {
+  useEffect(() => {
     let total = good + bad + neutral;
-    return total;
-    //Object.values(objState).reduce((acc, option) => acc + option, 0);
-  };
+    setTotalFeedback(total);
+  }, [bad, good, neutral]);
 
-  const positiveFeedbackPercentage = () => {
-    const positiveFeedback = Math.round((good / totalFeedback()) * 100) || 0;
-    return positiveFeedback;
-  };
+  // const totalFeedback = () => {
+  //   let total = good + bad + neutral;
+  //   return total;
+  //   //Object.values(objState).reduce((acc, option) => acc + option, 0);
+  // };
+
+  useEffect(() => {
+    let positiveFeedback = Math.round((good / totalFeedback) * 100) || 0;
+    setPositiveFeedbackPercentage(positiveFeedback);
+  }, [good, totalFeedback]);
+
+  // const positiveFeedbackPercentage = () => {
+  //   const positiveFeedback = Math.round((good / totalFeedback) * 100) || 0;
+  //   return positiveFeedback;
+  // };
 
   return (
     <div className="container">
@@ -48,13 +62,13 @@ function App() {
         />
       </Section>
       <Section title="Statistics">
-        {totalFeedback() ? (
+        {totalFeedback ? (
           <Statistics
             good={good}
             neutral={neutral}
             bad={bad}
-            total={totalFeedback()}
-            positivePercentage={positiveFeedbackPercentage()}
+            total={totalFeedback}
+            positivePercentage={positiveFeedbackPercentage}
           ></Statistics>
         ) : (
           <Notification />
